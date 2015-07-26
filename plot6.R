@@ -12,5 +12,5 @@ tmp <-dcast(data = meltNEI,fips+type+year~variable,sum)
 filtNEI2 <- filter(tmp,type=='ON-ROAD' & (fips=='24510' |fips=='06037'))
 #plot total emissions versus year for each city
 
-qplot(year, Emissions, data=filtNEI2)+geom_smooth(method=lm,se=FALSE)+facet_wrap(~fips,scales='free')
+qplot(year, Emissions, data=filtNEI2)+geom_smooth(method=lm,se=FALSE)+facet_wrap(~fips,scales='free')+ggtitle('Total Motor Vehicle Emissions for LA County and Baltimore City')
 ggsave(filename='plot6.png')

@@ -10,5 +10,5 @@ tmp <-dcast(data = meltNEI,fips+type+year~variable,sum)
 #approximate all 'ON-ROAD' type emissions as coming from motor vehicles
 filtNEI <- filter(tmp,type=='ON-ROAD' & fips=='24510')
 #plot total emissions versus year for baltimore city
-qplot(year, Emissions, data=filtNEI)+geom_smooth(method=lm,se=FALSE)
+qplot(year, Emissions, data=filtNEI)+geom_smooth(method=lm,se=FALSE)+ggtitle('Total Motor Vehicle Emissions in Baltimore City vs Year')
 ggsave(filename='plot5.png')

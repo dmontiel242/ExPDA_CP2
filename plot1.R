@@ -1,0 +1,17 @@
+## This first line will likely take a few seconds. Be patient!
+library(dplyr)
+library(reshape2)
+NEI <- readRDS("summarySCC_PM25.rds")
+SCC <- readRDS("Source_Classification_Code.rds")
+#select only data for Baltimore City based on SCC value
+
+
+meltNEI <- melt(NEI,id = c('fips','SCC','Pollutant','type','year'),measure.vars='Emissions')
+
+tmp <-dcast(data = meltNEI,year~variable,sum)
+
+png('plot1.png')
+with(tmp,plot(year,Emissions))
+title('Total Emissions in United States vs. Year')
+with(tmp,abline(lm(Emissions ~ year)))
+dev.off()
